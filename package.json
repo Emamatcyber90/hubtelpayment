@@ -1,0 +1,15 @@
+{
+  "name": "hubtelpayment",
+  "version": "1.0.0",
+  "description": "test hubtel payments",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hubtel",
+    "payment"
+  ],
+  "author": "paulmajora@gmail.com",
+  "license": "ISC"
+}
