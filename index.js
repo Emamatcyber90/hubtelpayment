@@ -1,5 +1,5 @@
 const HubtelPayment = require("./HubtelPayment"); 
 
-let pmt = new HubtelPayment();
+let payment = new HubtelPayment();
 
-pmt.test();
+payment.test();
