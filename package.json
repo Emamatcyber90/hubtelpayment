@@ -11,5 +11,8 @@
     "payment"
   ],
   "author": "paulmajora@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
 }
