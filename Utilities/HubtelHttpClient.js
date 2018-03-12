@@ -1,16 +1,15 @@
-<?php
 
-namespace Jowusu837\HubtelMerchantAccount\Helpers;
+// namespace Jowusu837\HubtelMerchantAccount\Helpers;
 
-use GuzzleHttp\Client;
-use Jowusu837\HubtelMerchantAccount\MobileMoney\Refund\Request as RefundRequest;
-use Jowusu837\HubtelMerchantAccount\MobileMoney\Receive\Request as ReceiveMobileMoneyRequest;
-use Jowusu837\HubtelMerchantAccount\OnlineCheckout\Request as OnlineCheckoutRequest;
-use Jowusu837\HubtelMerchantAccount\OnlineCheckout\Response as OnlineCheckoutResponse;
+// use GuzzleHttp\Client;
+// use Jowusu837\HubtelMerchantAccount\MobileMoney\Refund\Request as RefundRequest;
+// use Jowusu837\HubtelMerchantAccount\MobileMoney\Receive\Request as ReceiveMobileMoneyRequest;
+// use Jowusu837\HubtelMerchantAccount\OnlineCheckout\Request as OnlineCheckoutRequest;
+// use Jowusu837\HubtelMerchantAccount\OnlineCheckout\Response as OnlineCheckoutResponse;
 
 const HttpClient = require('./HttpClient');
 
-class SendsRequests
+class HubtelHttpClient
 {
     // protected $http;
 
@@ -57,31 +56,49 @@ class SendsRequests
      */
     sendOnlineCheckoutRequest(request)
     {
+
         request.store.name = request.store.name || this.config['store']['name'];
 
-        response = this.http.request('POST', "/v1/merchantaccount/onlinecheckout/invoice/create", [
-            'json' : json_decode(json_encode(request), true),
-            'auth' : this.auth
-        ]);
+         this.http
+        .headers('Content-Type', 'application/json')
+        .json(request)
+        .post(`/v1/merchantaccount/onlinecheckout/invoice/create`)
+        .then(cb)
+        .catch(error);
 
-        this.checkResponseStatus(response);
+        
 
-        invoiceResponse = json_decode(response.getBody());
+        // response = this.http.post('POST', "/v1/merchantaccount/onlinecheckout/invoice/create", [
+        //     'json' : json_decode(json_encode(request), true),
+        //     'auth' : this.auth
+        // ]);
 
-        return invoiceResponse.response_text;
+        // this.checkResponseStatus(response);
+
+        // invoiceResponse = json_decode(response.getBody());
+
+        // return invoiceResponse.response_text;
     }
 
     /**
      * @param $token
      * @return mixed
      */
-    sendCheckInvoiceStatusRequest(token)
+    sendCheckInvoiceStatusRequest(token, cb , error)
     {
-        $response = $this.http.request('GET', `/v1/merchantaccount/onlinecheckout/invoice/status/${token}`);
+        
+        this.http
+        .headers('Content-Type', 'application/json')
+        .json(request)
+        .post(`/v1/merchantaccount/onlinecheckout/invoice/status/${token}`)
+        .then(cb)
+        .catch(error);
 
-        this.checkResponseStatus(response);
+        // $response = $this.http.request('GET', `/v1/merchantaccount/onlinecheckout/invoice/status/${token}`);
 
-        return json_decode(response.getBody());
+        // this.checkResponseStatus(response);
+
+        // return json_decode(response.getBody());
     }
 
     /**
@@ -90,18 +107,25 @@ class SendsRequests
      */
     sendRefundMobileMoneyRequest(request)
     {
-        response = this.http.request(
-            'POST', 
-            "/v1/merchantaccount/merchants/{$this->config['account_number']}/transactions/refund", 
-            {
-            headers : [
-                'Content-type' : 'application/json'
-            ],
-            'body' : this.toJson($request),
-            'auth' : this.auth
-            });
-        this.checkResponseStatus(response);
-        return response.getBody();
+         this.http
+        .headers('Content-Type', 'application/json')
+        .json(request)
+        .post(`/v1/merchantaccount/merchants/${this.config['account_number']}/transactions/refund`)
+        .then(cb)
+        .catch(error);
+
+        // response = this.http.request(
+        //     'POST', 
+        //     "/v1/merchantaccount/merchants/{$this->config['account_number']}/transactions/refund", 
+        //     {
+        //     headers : [
+        //         'Content-type' : 'application/json'
+        //     ],
+        //     'body' : this.toJson($request),
+        //     'auth' : this.auth
+        //     });
+        // this.checkResponseStatus(response);
+        // return response.getBody();
     }
 
     checkResponseStatus(response)
