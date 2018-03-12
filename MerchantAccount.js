@@ -1,8 +1,13 @@
+
+const Response = require('./MobileMoney/Refund/Response');
+
+const HubtelHttpClient = require('./Utilities/HubtelHttpClient');
+
 class MerchantAccount{
 
-    constructor()
+    constructor( config )
     {
-        this.http = http;
+        this.http = new HubtelHttpClient(config);
     }
     // constructor(http)
     // {
@@ -17,8 +22,8 @@ class MerchantAccount{
      */
     receiveMobileMoney(request)
     {
-        const response = this.http.sendReceiveMobileMoneyRequest(request);
-        return response;
+        return this.http.sendReceiveMobileMoneyRequest(request);
+        // return response;
         // return new ReceiveMobileMoneyResponse(...$response);
     }
 
@@ -29,8 +34,8 @@ class MerchantAccount{
      */
     refundMobileMoney(request)
     {
-        const response = this.httpsendRefundMobileMoneyRequest(request);
-        return new RefundMobileMoneyResponse(response);
+        const response = this.http.sendRefundMobileMoneyRequest(request);
+        return new Response(response);
     }
 
     /**
@@ -60,3 +65,5 @@ class MerchantAccount{
         return response;
     }
 }
+
+module.exports =  MerchantAccount;

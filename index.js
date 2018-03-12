@@ -1,5 +1,3 @@
-const HubtelPayment = require("./HubtelPayment"); 
 
-let payment = new HubtelPayment();
-
-payment.test();
+const MerchantAccount = require("./MerchantAccount"); 
+module.exports = MerchantAccount;

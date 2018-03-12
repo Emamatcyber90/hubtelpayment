@@ -1,78 +1,76 @@
 const axios = require('axios');
 
-class HttpClient{
+class HttpClient {
   constructor(options){
-        
-      
-      this.baseURL = options.baseURL;
-      this.authorization = options.authorization;
+      this.baseURL = options.baseURL || '';
+      this.authorization = options.authorization || '';
 
       this.headers = options.headers || {};
 
+      this._http  = axios;
 
-      this.http  = axios.create({
-          baseURL: this.baseURL
-        });
-        this.http.defaults.headers.common['Authorization'] = this.authorization;
+      // this.http =  axios.create({
+      //   baseURL: 'https://api.hubtel.com',
+      //   // timeout: 1000,
+      //   // headers: {'X-Custom-Header': 'foobar'}
+      // });
+
+      this._http.defaults.headers.common['Authorization'] = this.authorization;
   }
 
   header(key , value){
-    this.http.defaults.headers.common[key] = value;
+    this._http.defaults.headers.common[key] = value;
     return this;
   }
 
+  // headers(key , value){
+  //   this.http.defaults.headers.common[key] = value;
+  //   return this;
+  // }
+
+  getUrl(route){
+      return this.baseURL + route;
+  }
   body(params){
-    this.params = params;
+    this._params = params;
     return this;
   }
 
   json(params){
-    this.body(JSON.stringify(params));
+    // this.body(JSON.stringify(params));
+    this.body(params);
     return this;
   }
 
   params(params){
-    this.params = params;
+    this._params = params;
     return this;
   }
 
   get(url){
-    this.http.get(url , {
-          params: this.params
+    url = this.getUrl(url);
+    return this._http.get(url , {
+          params: this._params
     })
-  .then(function (response) {
-    console.log(response);
-    this.then(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-    this.catch(response);
-    
-  });
+    // .then( (res) => {
+    //   console.debug(res.data);
+    // }).catch( err => {
+    //   console.debug(error.response.data , error.response.status);
+    // });
   }
   post(url , params){
-    this.body(params);
-    this.http.get(url , params)
-  .then(function (response) {
-    console.log(response);
-    this.then(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-    this.catch(response);
-  });
-
-  }
-  then(cb){
-    this.then = cb;
-  }
-  catch(cb){
-    this.catch = cb;
+    url = this.getUrl(url);
+    console.log("REQUEST ", url , params);
+    return this._http.post(url , params)
+    // .then( res => {
+    //   console.debug( "CL" , res.data);
+    // }).catch(err => {
+    //   console.debug("ERR_CL", error.response.data , error.response.status);
+    // });
   }
 
   test(){
     // Set config defaults when creating the instance
-    
     var instance = axios.create({
       baseURL: 'https://api.example.com'
     });
@@ -81,3 +79,5 @@ class HttpClient{
     instance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
   }
 }
+
+module.exports =  HttpClient;

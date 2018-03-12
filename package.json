@@ -1,18 +1,21 @@
 {
   "name": "hubtelpayment",
-  "version": "1.0.0",
-  "description": "test hubtel payments",
+  "version": "1.1.4",
+  "description": "test hubtel payments beta",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "hubtel",
-    "payment"
+    "payment",
+    "mobile money",
+    "receive money"
   ],
   "author": "paulmajora@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "base-64": "^0.1.0"
   }
 }

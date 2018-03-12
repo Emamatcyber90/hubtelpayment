@@ -1,7 +1,7 @@
 class Response
 {
     constructor(response){
-        this = response;
+        // this = response;
     }
 
 }

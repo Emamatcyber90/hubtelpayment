@@ -9,6 +9,8 @@
 
 const HttpClient = require('./HttpClient');
 
+const Convert = require('./Convert');
+
 class HubtelHttpClient
 {
     // protected $http;
@@ -19,24 +21,23 @@ class HubtelHttpClient
 
     constructor(config)
     {
-        
-        this.http = new HttpClient({baseURL: 'https://api.hubtel.com' , authorization : `${this.config['client_id']}:${this.config['client_secret']}` });
-        this.config = config;
-        this.auth = [this.config['api_key']['client_id'], this.config['api_key']['client_secret']];
-    }
+        config.authorization = 'Basic ' + Convert.base64Encode(`${config['client_id']}:${config['client_secret']}`);
+        config.baseURL = config.baseURL || 'https://api.hubtel.com';
 
+        this.config = config;
+        this.http = new HttpClient(this.config);
+    }
+    
     /**
      * @param ReceiveMobileMoneyRequest $request
      * @return mixed Actual response body from gateway
      */
-    sendReceiveMobileMoneyRequest(request, cb , error)
+    sendReceiveMobileMoneyRequest(request)
     {
-        this.http
-        .headers('Content-Type', 'application/json')
-        .json(request)
-        .post(`/v1/merchantaccount/merchants/${this.config['account_number']}/receive/mobilemoney`)
-        .then(cb)
-        .catch(error);
+        return this.http
+        // .header('Content-Type', 'application/json')
+        // .json(request)
+        .post(`/v1/merchantaccount/merchants/${this.config['account_number']}/receive/mobilemoney`, request);
         // $response = this.http.request('POST', "/v1/merchantaccount/merchants/{$this->config['account_number']}/receive/mobilemoney", [
         //     'headers'=>[
         //         'Content-type' => 'application/json'
@@ -58,13 +59,10 @@ class HubtelHttpClient
     {
 
         request.store.name = request.store.name || this.config['store']['name'];
-
-         this.http
-        .headers('Content-Type', 'application/json')
+         return this.http
+        // .header('Content-Type', 'application/json')
         .json(request)
-        .post(`/v1/merchantaccount/onlinecheckout/invoice/create`)
-        .then(cb)
-        .catch(error);
+        .post(`/v1/merchantaccount/onlinecheckout/invoice/create`);
 
         
 
@@ -84,15 +82,13 @@ class HubtelHttpClient
      * @param $token
      * @return mixed
      */
-    sendCheckInvoiceStatusRequest(token, cb , error)
+    sendCheckInvoiceStatusRequest(token)
     {
         
-        this.http
-        .headers('Content-Type', 'application/json')
+        return this.http
+        // .header('Content-Type', 'application/json')
         .json(request)
         .post(`/v1/merchantaccount/onlinecheckout/invoice/status/${token}`)
-        .then(cb)
-        .catch(error);
 
         // $response = $this.http.request('GET', `/v1/merchantaccount/onlinecheckout/invoice/status/${token}`);
 
@@ -107,12 +103,10 @@ class HubtelHttpClient
      */
     sendRefundMobileMoneyRequest(request)
     {
-         this.http
-        .headers('Content-Type', 'application/json')
+         return this.http
+        // .header('Content-Type', 'application/json')
         .json(request)
         .post(`/v1/merchantaccount/merchants/${this.config['account_number']}/transactions/refund`)
-        .then(cb)
-        .catch(error);
 
         // response = this.http.request(
         //     'POST', 
@@ -136,3 +130,5 @@ class HubtelHttpClient
         return this;
     }
 }
+
+module.exports =  HubtelHttpClient;
