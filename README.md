@@ -103,7 +103,7 @@ ma.checkInvoiceStatus('4bb4393e394343ce')
 
 ## Receive Mobile Money
 
-Here is how you request mobile money payment from say a controller method:
+Here is how you request mobile money payment from say a checkout method:
 ```js
 
 // receive money 
