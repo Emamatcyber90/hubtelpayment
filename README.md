@@ -35,7 +35,7 @@ let ma = new MerchantAccount(config);
 ```
 ## Using Online Checkout feature
 
-Let's say you are using this feature from a controller method, you can do it like so:
+Let's say you are using this feature from a checkout method, you can do it like so:
 
 ```js
 
