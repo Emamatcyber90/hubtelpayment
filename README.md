@@ -13,7 +13,7 @@ The `hubtelpayment` package allows you to accept and process payments using [Hub
 * Check status of transaction
 * Online checkout
 
-## Installation
+## Installation and Configuration
 
 Require the `npm install hubtelpayment` package in your `composer.json` and update your dependencies:
 ```js
@@ -125,41 +125,7 @@ ma.receiveMobileMoney({
     console.log(error.response.data , error.response.status);
 });
 ```
-
-## Configuration
-
-The defaults are set in `config/hubtelmerchantaccount.php`. Copy this file to your own config directory to modify the values. You can publish the config using this command:
-```sh
-$ php artisan vendor:publish --provider="Jowusu837\HubtelMerchantAccount\ServiceProvider"
-```
-
-    
-```js
-return [
-
-    /**
-     * Merchant account number
-     */
-    "account_number" => env('HUBTEL_MERCHANT_ACCOUNT_NUMBER'),
-
-    /**
-     * Login credentials for hubtel api
-     *
-     */
-    "api_key" => [
-        "client_id" => env('HUBTEL_MERCHANT_ACCOUNT_CLIENT_ID'),
-        "client_secret" => env('HUBTEL_MERCHANT_ACCOUNT_CLIENT_SECRET')
-    ],
-
-    /**
-     * Store details
-     */
-    "store" => [
-        "name" => env('APP_NAME')
-    ]
-];
-```
-    
+  
 ## License
 
 Released under the MIT License, see [LICENSE](LICENSE).
