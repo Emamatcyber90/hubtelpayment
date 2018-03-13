@@ -13,7 +13,7 @@
     "receive money"
   ],
   "author": "paulmajora@gmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
     "base-64": "^0.1.0"

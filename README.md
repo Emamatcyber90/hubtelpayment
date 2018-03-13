@@ -1,7 +1,5 @@
 # Hubtel Merchant Account integration for Node Js
-[![Latest Release on GitHub][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Total Downloads][ico-downloads]][link-downloads]
 
 Based on https://developers.hubtel.com/documentations/merchant-account-api
 
@@ -164,15 +162,5 @@ return [
 
 Released under the MIT License, see [LICENSE](LICENSE).
 
-[ico-version]: https://img.shields.io/github/release/jowusu837/laravelhubtelmerchantaccount.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/jowusu837/laravelhubtelmerchantaccount.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/jowusu837/laravelhubtelmerchantaccount.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/jowusu837/laravelhubtelmerchantaccount.svg?style=flat-square
-
-[link-packagist]: https://packagist.org/packages/jowusu837/laravelhubtelmerchantaccount
-[link-scrutinizer]: https://scrutinizer-ci.com/g/jowusu837/laravelhubtelmerchantaccount/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/jowusu837/laravelhubtelmerchantaccount
-[link-downloads]: https://packagist.org/packages/jowusu837/laravelhubtelmerchantaccount
-[link-author]: https://github.com/jowusu837
+[link-author]: https://github.com/paulmajora
 [link-contributors]: ../../contributors
