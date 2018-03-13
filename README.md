@@ -1,5 +1,4 @@
 # Hubtel Merchant Account integration for Node Js
-[![Software License][ico-license]](LICENSE.md)
 
 Based on https://developers.hubtel.com/documentations/merchant-account-api
 
@@ -20,6 +19,9 @@ Require the `npm install hubtelpayment` package in your `composer.json` and upda
 ```js
 
 const Hubtel =  require('hubtelpayment');
+
+const MerchantAccount = Hubtel.MerchantAccount; 
+const OnlineCheckout = Hubtel.OnlineCheckout; 
 
 // you may store and fetch these sensitive details in a config file.
 const config = {
