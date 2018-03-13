@@ -60,7 +60,6 @@ Let's say you are using this feature from a controller method, you can do it lik
      ]
  }
 
-const OnlineCheckout =  Hubtel.OnlineCheckout;
  // Initiate online checkout
  ocRequest = new OnlineCheckout.Request();
  ocRequest.invoice.description = "Invoice description";
