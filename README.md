@@ -15,7 +15,7 @@ The `hubtelpayment` package allows you to accept and process payments using [Hub
 
 ## Installation and Configuration
 
-Require the `npm install hubtelpayment` package in your `composer.json` and update your dependencies:
+Install using `npm install hubtelpayment --save`
 ```js
 
 const Hubtel =  require('hubtelpayment');
