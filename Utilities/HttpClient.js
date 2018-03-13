@@ -37,11 +37,14 @@ class HttpClient {
   }
 
   json(params){
-    // this.body(JSON.stringify(params));
-    this.body(params);
+    this.header('Content-Type', 'application/json')
+    this.body(JSON.stringify(params));
     return this;
   }
 
+  getParams(p){
+    return p || this._params;
+  }
   params(params){
     this._params = params;
     return this;
@@ -50,7 +53,7 @@ class HttpClient {
   get(url){
     url = this.getUrl(url);
     return this._http.get(url , {
-          params: this._params
+          params: this.getParams()
     })
     // .then( (res) => {
     //   console.debug(res.data);
@@ -58,10 +61,10 @@ class HttpClient {
     //   console.debug(error.response.data , error.response.status);
     // });
   }
-  post(url , params){
+  post(url , params = null){
     url = this.getUrl(url);
-    console.log("REQUEST ", url , params);
-    return this._http.post(url , params)
+    console.log("REQUEST ", url , this.getParams(params));
+    return this._http.post(url , this.getParams(params))
     // .then( res => {
     //   console.debug( "CL" , res.data);
     // }).catch(err => {

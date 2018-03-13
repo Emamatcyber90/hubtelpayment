@@ -3,7 +3,6 @@
 const Invoice = require("./Invoice");
 const Store = require("./Store");
 const Actions = require("./Actions");
-
 class Request
 {
     /**

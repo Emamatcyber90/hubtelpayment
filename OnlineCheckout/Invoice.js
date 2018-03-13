@@ -25,14 +25,17 @@ class Invoice
      */
     // public $description;
 
+    constructor(){
+        this.items = [];
+    }
     addItem(item)
     {
-        idx = this.items.length;
-        this.items[`item_${idx}`] = item;
+       //  const idx = this.items.length;
+        this.items.push(item);
     }
 
     removeItem(idx){
-        this.items[`item_${idx}`];
+        // this.items[`item_${idx}`];
     }
 }
 

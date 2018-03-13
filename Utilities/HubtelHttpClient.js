@@ -60,7 +60,6 @@ class HubtelHttpClient
 
         request.store.name = request.store.name || this.config['store']['name'];
          return this.http
-        // .header('Content-Type', 'application/json')
         .json(request)
         .post(`/v1/merchantaccount/onlinecheckout/invoice/create`);
 
@@ -84,12 +83,8 @@ class HubtelHttpClient
      */
     sendCheckInvoiceStatusRequest(token)
     {
-        
         return this.http
-        // .header('Content-Type', 'application/json')
-        .json(request)
-        .post(`/v1/merchantaccount/onlinecheckout/invoice/status/${token}`)
-
+        .get(`/v1/merchantaccount/onlinecheckout/invoice/status/${token}`)
         // $response = $this.http.request('GET', `/v1/merchantaccount/onlinecheckout/invoice/status/${token}`);
 
         // this.checkResponseStatus(response);
