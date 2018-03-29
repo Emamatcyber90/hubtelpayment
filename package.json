@@ -1,7 +1,7 @@
 {
   "name": "hubtelpayment",
-  "version": "1.1.5",
-  "description": "test hubtel payments beta",
+  "version": "1.1.6",
+  "description": "Hubtel payments for Node.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
