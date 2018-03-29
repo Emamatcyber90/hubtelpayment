@@ -92,7 +92,7 @@ Let's say you are using this feature from a checkout method, you can do it like 
     console.log(error.response.data , error.response.status);
 });
 
-
+//  check invoice status
 ma.checkInvoiceStatus('4bb4393e394343ce')
 .then( (res) => {
     console.log(res.data);
